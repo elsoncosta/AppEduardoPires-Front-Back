@@ -17,12 +17,12 @@ import { FornecedorService } from '../services/fornecedor.service';
 })
 export class EditarComponent implements OnInit {
 
-  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
+  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
 
   errors: any[] = [];
   errorsEndereco: any[] = [];
-  fornecedorForm: FormGroup;
-  enderecoForm: FormGroup;
+  fornecedorForm!: FormGroup;
+  enderecoForm!: FormGroup;
 
   fornecedor: Fornecedor = new Fornecedor();
   endereco: Endereco = new Endereco();
@@ -32,10 +32,10 @@ export class EditarComponent implements OnInit {
   displayMessage: DisplayMessage = {};
   textoDocumento: string = '';
 
-  tipoFornecedor: number;
+  tipoFornecedor!: number;
   formResult: string = '';
 
-  mudancasNaoSalvas: boolean;
+  mudancasNaoSalvas!: boolean;
 
   constructor(private fb: FormBuilder,
     private fornecedorService: FornecedorService,

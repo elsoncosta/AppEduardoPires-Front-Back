@@ -16,10 +16,10 @@ import { FornecedorService } from '../services/fornecedor.service';
 })
 export class NovoComponent implements OnInit {
 
-  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
+  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
 
   errors: any[] = [];
-  fornecedorForm: FormGroup;
+  fornecedorForm!: FormGroup;
   fornecedor: Fornecedor = new Fornecedor();
 
   validationMessages: ValidationMessages;
@@ -28,7 +28,7 @@ export class NovoComponent implements OnInit {
 
   formResult: string = '';
 
-  mudancasNaoSalvas: boolean;
+  mudancasNaoSalvas!: boolean;
 
   constructor(private fb: FormBuilder,
     private fornecedorService: FornecedorService,

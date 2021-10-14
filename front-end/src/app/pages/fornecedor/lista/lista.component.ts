@@ -8,8 +8,8 @@ import { Fornecedor } from '../models/fornecedor';
 })
 export class ListaComponent implements OnInit {
 
-  public fornecedores: Fornecedor[];
-  errorMessage: string;
+  public fornecedores!: Fornecedor[];
+  errorMessage!: string;
 
   constructor(private fornecedorService: FornecedorService) { }
 
