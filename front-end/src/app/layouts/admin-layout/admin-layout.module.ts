@@ -6,17 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardModule } from 'ngx-clipboard';
 
-
-
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-
-// import { NovoComponent } from 'src/app/pages/fornecedor/novo/novo.component';
-// import { ListaComponent } from 'src/app/pages/fornecedor/lista/lista.component';
-// import { EditarComponent } from 'src/app/pages/fornecedor/editar/editar.component';
-// import { ExcluirComponent } from 'src/app/pages/fornecedor/excluir/excluir.component';
-// import { DetalhesComponent } from 'src/app/pages/fornecedor/detalhes/detalhes.component';
-// import { FornecedorService } from 'src/app/pages/fornecedor/services/fornecedor.service';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -32,15 +23,8 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
   ],
   declarations: [
     DashboardComponent,
-    // NovoComponent,
-    // ListaComponent,
-    // EditarComponent,
-    // ExcluirComponent,
-    // DetalhesComponent
   ],
-  providers: [
-    // FornecedorService,
-  ]
+  providers: []
 })
 
 export class AdminLayoutModule {}

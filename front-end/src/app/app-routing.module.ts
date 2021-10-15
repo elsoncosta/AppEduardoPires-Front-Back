@@ -27,16 +27,13 @@ export const routes: Routes =[
     component: AuthLayoutComponent,
     children: [
       {
-        path: 'account',
+        path: '',
         loadChildren: () => import('src/app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)
       }
     ]
   },
-  // {
-  //   path: 'account',
-  //   loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)},
-    {path: 'nao-encontrado', component: NotFoundComponent},
-    {path: '**', component: NotFoundComponent}
+  {path: 'nao-encontrado', component: NotFoundComponent},
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
