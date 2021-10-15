@@ -14,7 +14,7 @@ const fornecedorRouterConfig: Routes = [
         path: '', component: FornecedorAppComponent,
         children: [
             { path: 'list', component: ListaComponent },
-            { path: 'adicionar-novo', component: NovoComponent },
+            { path: 'novo', component: NovoComponent },
             { path: 'editar/:id', component: EditarComponent },
             { path: 'detalhes/:id', component: DetalhesComponent },
             { path: 'excluir/:id', component: ExcluirComponent }
