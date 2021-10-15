@@ -19,15 +19,9 @@ export const AdminLayoutRoutes: Routes = [
     // { path: 'tables',         component: TablesComponent },
     // { path: 'icons',          component: IconsComponent },
     // { path: 'data-binding',   component: DataBindingComponent },
-    { path: 'fornecedor',      component: FornecedorAppComponent },
-    // {
-    //     path: '',
-    //     children: [
-    //         { path: 'listar-todos', component: ListaComponent },
-    //         { path: 'adicionar-novo', component: NovoComponent },
-    //         { path: 'editar/:id', component: EditarComponent },
-    //         { path: 'detalhes/:id', component: DetalhesComponent },
-    //         { path: 'excluir/:id', component: ExcluirComponent }
-    //     ]
-    // }
+    {
+        path: 'fornecedores',
+        loadChildren: () => import('../../pages/fornecedor/fornecedor.module')
+        .then(m => m.FornecedorModule)
+    },
 ];

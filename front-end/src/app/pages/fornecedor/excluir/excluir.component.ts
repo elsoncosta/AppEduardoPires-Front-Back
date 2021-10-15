@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Fornecedor } from '../models/fornecedor';
 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,7 +9,9 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-excluir',
   templateUrl: './excluir.component.html'
 })
-export class ExcluirComponent {
+export class ExcluirComponent implements OnInit {
+
+  id!: string;
 
   fornecedor: Fornecedor = new Fornecedor();
 
@@ -18,8 +20,13 @@ export class ExcluirComponent {
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService) {
-    // this.fornecedorService.obterPorId(route.params['id'])
-    //   .subscribe(fornecedor => this.fornecedor = fornecedor);
+    this.fornecedorService.obterPorId(this.id)
+      .subscribe(fornecedor => this.fornecedor = fornecedor);
+  }
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+    });
   }
 
   excluirEvento() {

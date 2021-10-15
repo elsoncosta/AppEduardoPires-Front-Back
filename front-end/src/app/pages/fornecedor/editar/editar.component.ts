@@ -34,6 +34,7 @@ export class EditarComponent implements OnInit {
 
   tipoFornecedor!: number;
   formResult: string = '';
+  id!: string;
 
   mudancasNaoSalvas!: boolean;
 
@@ -72,12 +73,15 @@ export class EditarComponent implements OnInit {
 
     this.genericValidator = new GenericValidator(this.validationMessages);
 
-    // this.fornecedorService.obterPorId(route.params['id'])
-    //   .subscribe(fornecedor => this.fornecedor = fornecedor);
+    this.fornecedorService.obterPorId(this.id)
+      .subscribe(fornecedor => this.fornecedor = fornecedor);
   }
 
   ngOnInit() {
-
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+    });
+    
     this.fornecedorForm = this.fb.group({
       id: '',
       nome: ['', [Validators.required]],
