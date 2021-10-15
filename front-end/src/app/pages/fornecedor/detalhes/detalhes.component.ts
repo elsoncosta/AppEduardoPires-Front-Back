@@ -16,7 +16,7 @@ export class DetalhesComponent {
     private route: ActivatedRoute,
     private fornecedorService: FornecedorService) {
 
-      this.fornecedorService.obterPorId(route.params['id'])
-      .subscribe(fornecedor => this.fornecedor = fornecedor);
+      // this.fornecedorService.obterPorId(route.params['id'])
+      // .subscribe(fornecedor => this.fornecedor = fornecedor);
   }
 }

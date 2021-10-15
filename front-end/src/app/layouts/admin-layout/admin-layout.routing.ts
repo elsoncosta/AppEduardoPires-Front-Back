@@ -7,11 +7,11 @@ import { EditarComponent } from 'src/app/pages/fornecedor/editar/editar.componen
 // import { TablesComponent } from '../../pages/tables/tables.component';
 // import { DataBindingComponent } from '../../pages/data-binding/data-binding.component';
 
-import { ExcluirComponent } from './../../pages/fornecedor/excluir/excluir.component';
-import { DetalhesComponent } from './../../pages/fornecedor/detalhes/detalhes.component';
-import { NovoComponent } from './../../pages/fornecedor/novo/novo.component';
-import { ListaComponent } from './../../pages/fornecedor/lista/lista.component';
-import { FornecedorAppComponent } from './../../pages/fornecedor/fornecedor.app.component';
+// import { ExcluirComponent } from './../../pages/fornecedor/excluir/excluir.component';
+// import { DetalhesComponent } from './../../pages/fornecedor/detalhes/detalhes.component';
+// import { NovoComponent } from './../../pages/fornecedor/novo/novo.component';
+// import { ListaComponent } from './../../pages/fornecedor/lista/lista.component';
+import { FornecedorAppComponent } from 'src/app/pages/fornecedor/fornecedor.app.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -19,14 +19,15 @@ export const AdminLayoutRoutes: Routes = [
     // { path: 'tables',         component: TablesComponent },
     // { path: 'icons',          component: IconsComponent },
     // { path: 'data-binding',   component: DataBindingComponent },
-    {
-        path: '', component: FornecedorAppComponent,
-        children: [
-            { path: 'listar-todos', component: ListaComponent },
-            { path: 'adicionar-novo', component: NovoComponent },
-            { path: 'editar/:id', component: EditarComponent },
-            { path: 'detalhes/:id', component: DetalhesComponent },
-            { path: 'excluir/:id', component: ExcluirComponent }
-        ]
-    }
+    { path: 'fornecedor',      component: FornecedorAppComponent },
+    // {
+    //     path: '',
+    //     children: [
+    //         { path: 'listar-todos', component: ListaComponent },
+    //         { path: 'adicionar-novo', component: NovoComponent },
+    //         { path: 'editar/:id', component: EditarComponent },
+    //         { path: 'detalhes/:id', component: DetalhesComponent },
+    //         { path: 'excluir/:id', component: ExcluirComponent }
+    //     ]
+    // }
 ];

@@ -18,8 +18,8 @@ export class ExcluirComponent {
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService) {
-    this.fornecedorService.obterPorId(route.params['id'])
-      .subscribe(fornecedor => this.fornecedor = fornecedor);
+    // this.fornecedorService.obterPorId(route.params['id'])
+    //   .subscribe(fornecedor => this.fornecedor = fornecedor);
   }
 
   excluirEvento() {
