@@ -13,7 +13,7 @@ const fornecedorRouterConfig: Routes = [
     {
         path: '', component: FornecedorAppComponent,
         children: [
-            { path: 'listar-todos', component: ListaComponent },
+            { path: 'list', component: ListaComponent },
             { path: 'adicionar-novo', component: NovoComponent },
             { path: 'editar/:id', component: EditarComponent },
             { path: 'detalhes/:id', component: DetalhesComponent },

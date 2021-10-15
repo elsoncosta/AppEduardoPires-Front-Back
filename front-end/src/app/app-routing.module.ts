@@ -31,9 +31,7 @@ export const routes: Routes =[
         loadChildren: () => import('src/app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)
       }
     ]
-  },
-  {path: 'nao-encontrado', component: NotFoundComponent},
-  {path: '**', component: NotFoundComponent}
+  }
 ];
 
 @NgModule({
