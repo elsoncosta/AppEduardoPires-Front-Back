@@ -22,19 +22,17 @@ export const routes: Routes =[
         loadChildren: () => import('src/app/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
       }
     ]
-  }, {
+  }, 
+  {
     path: '',
     component: AuthLayoutComponent,
     children: [
       {
-        path: 'account',
+        path: '',
         loadChildren: () => import('src/app/layouts/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule)
       }
     ]
   },
-  // {
-  //   path: 'account',
-  //   loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)},
     {path: 'nao-encontrado', component: NotFoundComponent},
     {path: '**', component: NotFoundComponent}
 ];
