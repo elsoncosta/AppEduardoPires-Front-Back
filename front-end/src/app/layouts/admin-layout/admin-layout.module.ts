@@ -24,9 +24,13 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
   declarations: [
     DashboardComponent,
   ],
+<<<<<<< HEAD
   // providers: [
   //   FornecedorService,
   // ]
+=======
+  providers: []
+>>>>>>> f03bbeb
 })
 
 export class AdminLayoutModule {}

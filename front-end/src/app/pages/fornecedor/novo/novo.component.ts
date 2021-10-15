@@ -64,15 +64,29 @@ export class NovoComponent implements OnInit {
 
     this.genericValidator = new GenericValidator(this.validationMessages);
   }
-
+  
   ngOnInit() {
-
+    
     this.fornecedorForm = this.fb.group({
       nome: ['', [Validators.required]],
       documento: ['', [Validators.required]],
+      // documento: ['', [Validators.required, NgBrazilValidators.cpf]],
       ativo: ['', [Validators.required]],
-      tipoFornecedor: ['', [Validators.required]]     
+      tipoFornecedor: ['', [Validators.required]],
+      
+      endereco: this.fb.group({
+        logradouro: ['', [Validators.required]],
+        numero: ['', [Validators.required]],
+        complemento: [''],
+        bairro: ['', [Validators.required]],
+        cep: ['', [Validators.required]],
+        // cep: ['', [Validators.required, NgBrazilValidators.cep]],
+        cidade: ['', [Validators.required]],
+        estado: ['', [Validators.required]]
+      })
     });
+
+    this.fornecedorForm.patchValue({tipoFornecedor: '1', ativo: true});
   }
 
   ngAfterViewInit(): void {

@@ -8,5 +8,9 @@ export const AdminLayoutRoutes: Routes = [
         path: 'fornecedores',
         loadChildren: () => import('../../pages/fornecedor/fornecedor.module')
         .then(m => m.FornecedorModule)
+<<<<<<< HEAD
     },
+=======
+    }
+>>>>>>> f03bbeb
 ];
