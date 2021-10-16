@@ -16,21 +16,15 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgModule,
     RouterModule.forChild(AdminLayoutRoutes),
     HttpClientModule,
+    NgbModule,
     ClipboardModule,
   ],
   declarations: [
     DashboardComponent,
   ],
-<<<<<<< HEAD
-  // providers: [
-  //   FornecedorService,
-  // ]
-=======
   providers: []
->>>>>>> f03bbeb
 })
 
 export class AdminLayoutModule {}
