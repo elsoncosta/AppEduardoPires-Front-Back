@@ -40,7 +40,6 @@ export const routes: Routes =[
     FormsModule,
     RouterModule.forRoot(routes,{useHash: true})
   ],
-  exports: [
-  ],
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

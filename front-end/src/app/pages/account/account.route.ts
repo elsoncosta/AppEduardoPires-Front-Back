@@ -7,12 +7,10 @@ import { AccountGuard } from './services/account.guard';
 
 const rootRouterConfig: Routes = [
     {
-        path: '', component: AccountAppComponent,
+        path: 'account', component: AccountAppComponent,
         children: [
-        // { path: 'registro', component: RegisterComponent, canActivate: [AccountGuard], canDeactivate: [AccountGuard] },
-        // { path: 'login', component: LoginComponent, canActivate: [AccountGuard] }
-        { path: 'registro', component: RegisterComponent},
-        { path: 'login', component: LoginComponent}
+        { path: 'registro', component: RegisterComponent, canActivate: [AccountGuard], canDeactivate: [AccountGuard] },
+        { path: 'login', component: LoginComponent, canActivate: [AccountGuard] }
         ]
     }
 ];

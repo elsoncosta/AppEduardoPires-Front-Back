@@ -1,17 +1,18 @@
+import { ProdutoAppComponent } from './produto.app.component';
 import { NgModule } from '@angular/core';
+
 import { Routes, RouterModule } from '@angular/router';
 
-import { FornecedorAppComponent } from './fornecedor.app.component';
-
-import { CreateComponent } from './create/create.component';
 import { IndexComponent } from './index/index.component';
+import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
 import { DeleteComponent } from './delete/delete.component';
 
-const fornecedorRouterConfig: Routes = [
+
+const rootRouterConfig: Routes = [
     {
-        path: '', component: FornecedorAppComponent,
+        path: '', component: ProdutoAppComponent,
         children: [
             { path: 'index', component: IndexComponent },
             { path: 'create', component: CreateComponent },
@@ -24,8 +25,8 @@ const fornecedorRouterConfig: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(fornecedorRouterConfig)
+        RouterModule.forChild(rootRouterConfig)
     ],
     exports: [RouterModule]
 })
-export class FornecedorRoutingModule { }
+export class ProdutoRoutingModule { }

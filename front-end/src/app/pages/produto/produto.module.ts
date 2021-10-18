@@ -5,36 +5,37 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NarikCustomValidatorsModule } from '@narik/custom-validators';
 
-import { FornecedorAppComponent } from './fornecedor.app.component';
-import { FornecedorRoutingModule } from './fornecedor.route';
+import { ProdutoRoutingModule } from './produto.route';
+import { ProdutoService } from './services/produto.service';
 
-import { FornecedorService } from './services/fornecedor.service';
-
+import { ProdutoAppComponent } from './produto.app.component';
 import { IndexComponent } from './index/index.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
-import { DeleteComponent } from './delete/delete.component';
 import { DetailsComponent } from './details/details.component';
+import { DeleteComponent } from './delete/delete.component';
+
+
 
 @NgModule({
   declarations: [
-    FornecedorAppComponent,
-    CreateComponent,
+    ProdutoAppComponent,
     IndexComponent,
+    CreateComponent,
     EditComponent,
+    DetailsComponent,
     DeleteComponent,
-    DetailsComponent
   ],
   imports: [
     CommonModule,
-    FornecedorRoutingModule,
+    ProdutoRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NarikCustomValidatorsModule
   ],
   providers: [
-    FornecedorService
+    ProdutoService
   ]
 })
 export class FornecedorModule { }

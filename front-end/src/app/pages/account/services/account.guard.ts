@@ -20,7 +20,7 @@ export class AccountGuard implements CanDeactivate<RegisterComponent>, CanActiva
 
     canActivate() {
         if(this.localStorageUtils.obterTokenUsuario()){
-            this.router.navigate(['/home']);
+            this.router.navigate(['/dashboard']);
         }
         return true;
     }
