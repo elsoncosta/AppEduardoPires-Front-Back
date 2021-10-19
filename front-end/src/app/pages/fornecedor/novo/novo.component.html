@@ -1,4 +1,25 @@
+<!-- Header -->
+<!-- Header -->
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+        <div class="row align-items-center py-0">
+            <div class="col-lg-6 col-7">
+                <!-- <h6 class="h2 text-white d-inline-block mb-0">Fornecedores</h6> -->
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                    <!-- <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li> -->
+                    <li class="breadcrumb-item"><a [routerLink]="['/fornecedores/list']">Fornecedores</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Fornecedor</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-lg-6 col-5 text-right">
+            <a [routerLink]="['/fornecedores/novo']" class="btn btn-sm btn-neutral">Novo</a>
+            </div>
+        </div>
+        </div>
+    </div>
 </div>
   <!-- Page content -->
   <div class="container-fluid mt--7">
@@ -33,7 +54,7 @@
                             <div class="form-group">
                                 <label class="control-label">Documento</label>
                                 <div>
-                                    <input class="form-control" id="documento" type="text" placeholder="(requerido)" formControlName="documento" [ngClass]="{'is-invalid': displayMessage.documento }" />
+                                    <input class="form-control" id="documento" type="text" placeholder="{{ textoDocumento }}" formControlName="documento" [textMask]="tipoFornecedorForm().value === '1' ? {mask: MASKS.cpf.textMask} : {mask: MASKS.cnpj.textMask}" [ngClass]="{'is-invalid': displayMessage.documento }" />
                         
                                     <span class="text-danger" *ngIf="displayMessage.documento">
                                         <p [innerHTML]="displayMessage.documento"></p>
@@ -59,7 +80,7 @@
                                 <div class="form-group">
                                     <label class="control-label">CEP</label>
                                     <div>
-                                        <input class="form-control" id="cep" type="text" placeholder="CEP (requerido)" formControlName="cep" [ngClass]="{ 'is-invalid': displayMessage.cep }" />
+                                        <input class="form-control" id="cep" type="text" placeholder="CEP (requerido)" formControlName="cep"  cep [textMask]="{mask: MASKS.cep.textMask}" [ngClass]="{ 'is-invalid': displayMessage.cep }" />
                                         <span class="text-danger" *ngIf="displayMessage.cep">
                                             <p [innerHTML]="displayMessage.cep"></p>
                                         </span>

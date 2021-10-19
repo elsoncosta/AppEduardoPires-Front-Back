@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { TextMaskModule } from 'angular2-text-mask';
+import { NgBrazil } from 'ng-brazil';
+
 import { NarikCustomValidatorsModule } from '@narik/custom-validators';
 
 import { FornecedorAppComponent } from './fornecedor.app.component';
@@ -15,6 +18,7 @@ import { NovoComponent } from './novo/novo.component';
 import { EditarComponent } from './editar/editar.component';
 import { ExcluirComponent } from './excluir/excluir.component';
 import { DetalhesComponent } from './detalhes/detalhes.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +35,9 @@ import { DetalhesComponent } from './detalhes/detalhes.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NarikCustomValidatorsModule
+    NarikCustomValidatorsModule,
+    TextMaskModule,
+    NgBrazil,
   ],
   providers: [
     FornecedorService
