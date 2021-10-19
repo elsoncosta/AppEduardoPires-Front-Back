@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { TextMaskModule } from 'angular2-text-mask';
 import { NgBrazil } from 'ng-brazil';
 import { ToastrModule } from 'ngx-toastr';
@@ -36,7 +36,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
     [RouterModule.forRoot(routes, {useHash: false})]   
   ],
   providers: [],
-  exports: [NgbModule],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 
 import { AccountService } from './services/account.services';
 import { AccountGuard } from './services/account.guard';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AccountGuard } from './services/account.guard';
     CommonModule,
     AccountRoutingModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
     NarikCustomValidatorsModule
