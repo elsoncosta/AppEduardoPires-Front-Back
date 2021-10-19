@@ -25,7 +25,7 @@ export class CreateComponent implements OnInit {
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
 
   errors: any[] = [];
-  fornecedorForm!: FormGroup;
+  form!: FormGroup;
   fornecedor: Fornecedor = new Fornecedor();
 
   validationMessages: ValidationMessages;
@@ -79,7 +79,7 @@ export class CreateComponent implements OnInit {
   
   ngOnInit() {
     
-    this.fornecedorForm = this.fb.group({
+    this.form = this.fb.group({
       nome: ['', [Validators.required]],
       documento: ['', [Validators.required, NgBrazilValidators.cpf]],
       ativo: ['', [Validators.required]],
@@ -96,11 +96,11 @@ export class CreateComponent implements OnInit {
       })
     });
 
-    this.fornecedorForm.patchValue({tipoFornecedor: '1', ativo: true});
+    this.form.patchValue({tipoFornecedor: '1', ativo: true});
   }
 
   ngAfterViewInit(): void {
-    this.tipoFornecedorForm().valueChanges
+    this.tipoform().valueChanges
         .subscribe(() => {
           this.trocarValidacaoDocumento();
           this.configurarElementosValidacao();
@@ -119,12 +119,12 @@ export class CreateComponent implements OnInit {
   }
 
   validarFormulario() {
-    this.displayMessage = this.genericValidator.processarMensagens(this.fornecedorForm);
+    this.displayMessage = this.genericValidator.processarMensagens(this.form);
     this.mudancasNaoSalvas = true;
   }
 
   trocarValidacaoDocumento() {
-    if (this.tipoFornecedorForm().value === "1") {
+    if (this.tipoform().value === "1") {
       this.documento().clearValidators();
       this.documento().setValidators([Validators.required, NgBrazilValidators.cpf]);
       this.textoDocumento = "CPF (requerido)";
@@ -136,12 +136,12 @@ export class CreateComponent implements OnInit {
     }
   }
 
-  tipoFornecedorForm(): AbstractControl {
-    return this.fornecedorForm.get('tipoFornecedor')!;
+  tipoform(): AbstractControl {
+    return this.form.get('tipoFornecedor')!;
   }
 
   documento(): AbstractControl {
-    return this.fornecedorForm.get('documento')!;
+    return this.form.get('documento')!;
   }
 
   buscarCep(event: any) {
@@ -164,7 +164,7 @@ export class CreateComponent implements OnInit {
   }
 
   preencherEnderecoConsulta(cepConsulta: CepConsulta) {
-    this.fornecedorForm.patchValue({
+    this.form.patchValue({
       endereco: {
         logradouro: cepConsulta.logradouro,
         bairro: cepConsulta.bairro,
@@ -176,8 +176,8 @@ export class CreateComponent implements OnInit {
   }  
 
    adicionarFornecedor() {
-    if (this.fornecedorForm.dirty && this.fornecedorForm.valid) {
-      this.fornecedor = Object.assign({}, this.fornecedor, this.fornecedorForm.value);
+    if (this.form.dirty && this.form.valid) {
+      this.fornecedor = Object.assign({}, this.fornecedor, this.form.value);
       this.formResult = JSON.stringify(this.fornecedor);
 
       this.fornecedor.endereco.cep = StringUtils.somenteNumeros(this.fornecedor.endereco.cep);
@@ -194,7 +194,7 @@ export class CreateComponent implements OnInit {
   }
 
   processarSucesso(response: any) {
-    this.fornecedorForm.reset();
+    this.form.reset();
     this.errors = [];
 
     let toast = this.toastr.success('Fornecedor cadastrado com sucesso!', 'Sucesso!');
