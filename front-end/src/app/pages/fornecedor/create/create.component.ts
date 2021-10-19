@@ -1,8 +1,10 @@
+import { StringUtils } from './../../../utils/string-utils';
 import { Component, OnInit, ViewChildren, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControlName, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Observable, fromEvent, merge } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 import { ToastrService } from 'ngx-toastr';
 import { NgBrazilValidators } from 'ng-brazil';
@@ -11,6 +13,7 @@ import { utilsBr } from 'js-brasil';
 import { ValidationMessages, GenericValidator, DisplayMessage } from 'src/app/utils/generic-form-validation';
 import { Fornecedor } from '../models/fornecedor';
 import { FornecedorService } from '../services/fornecedor.service';
+import { CepConsulta } from '../models/endereco';
 
 
 @Component({
@@ -29,6 +32,7 @@ export class CreateComponent implements OnInit {
   genericValidator: GenericValidator;
   displayMessage: DisplayMessage = {};
   textoDocumento: string = 'CPF (requerido)';
+  pesquisaCep: boolean = false;
 
   MASKS = utilsBr.MASKS;
   formResult: string = '';
@@ -77,7 +81,6 @@ export class CreateComponent implements OnInit {
     
     this.fornecedorForm = this.fb.group({
       nome: ['', [Validators.required]],
-      // documento: ['', [Validators.required]],
       documento: ['', [Validators.required, NgBrazilValidators.cpf]],
       ativo: ['', [Validators.required]],
       tipoFornecedor: ['', [Validators.required]],
@@ -87,7 +90,6 @@ export class CreateComponent implements OnInit {
         numero: ['', [Validators.required]],
         complemento: [''],
         bairro: ['', [Validators.required]],
-        // cep: ['', [Validators.required]],
         cep: ['', [Validators.required, NgBrazilValidators.cep]],
         cidade: ['', [Validators.required]],
         estado: ['', [Validators.required]]
@@ -99,11 +101,11 @@ export class CreateComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.tipoFornecedorForm().valueChanges
-    .subscribe(() => {
-      this.trocarValidacaoDocumento();
-      this.configurarElementosValidacao();
-      this.validarFormulario();
-    });
+        .subscribe(() => {
+          this.trocarValidacaoDocumento();
+          this.configurarElementosValidacao();
+          this.validarFormulario();
+        });
     this.configurarElementosValidacao();
   }
 
@@ -142,10 +144,44 @@ export class CreateComponent implements OnInit {
     return this.fornecedorForm.get('documento')!;
   }
 
+  buscarCep(event: any) {
+    let cep: string = StringUtils.somenteNumeros(event.target.value.toString());
+    this.pesquisaCep = false;
+    if (cep.length < 8) return;
+    this.pesquisaCep = true;
+
+    this.fornecedorService.consultarCep(cep)
+      .subscribe({
+        next: (nextHandler) => {
+          this.preencherEnderecoConsulta(nextHandler);
+          this.pesquisaCep = false;
+        },
+        error: (errorHandler) => {
+          this.errors.push(errorHandler );
+          this.pesquisaCep = false;
+        }
+        });
+  }
+
+  preencherEnderecoConsulta(cepConsulta: CepConsulta) {
+    this.fornecedorForm.patchValue({
+      endereco: {
+        logradouro: cepConsulta.logradouro,
+        bairro: cepConsulta.bairro,
+        cep: cepConsulta.cep,
+        cidade: cepConsulta.localidade,
+        estado: cepConsulta.uf
+      }
+    });
+  }  
+
    adicionarFornecedor() {
     if (this.fornecedorForm.dirty && this.fornecedorForm.valid) {
       this.fornecedor = Object.assign({}, this.fornecedor, this.fornecedorForm.value);
       this.formResult = JSON.stringify(this.fornecedor);
+
+      this.fornecedor.endereco.cep = StringUtils.somenteNumeros(this.fornecedor.endereco.cep);
+      this.fornecedor.documento = StringUtils.somenteNumeros(this.fornecedor.documento);
 
       this.fornecedorService.novoFornecedor(this.fornecedor)
         .subscribe(
