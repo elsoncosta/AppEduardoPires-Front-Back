@@ -1,9 +1,9 @@
-import { MenuLoginComponent } from './menu-login/menu-login.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 
+import { MenuLoginComponent } from './menu-login/menu-login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';

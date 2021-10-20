@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { NarikCustomValidatorsModule } from '@narik/custom-validators';
 
 import { ProdutoRoutingModule } from './produto.route';
@@ -14,7 +16,7 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
 import { DeleteComponent } from './delete/delete.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 

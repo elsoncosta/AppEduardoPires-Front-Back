@@ -1,10 +1,9 @@
 import { StringUtils } from './../../../utils/string-utils';
 import { Component, OnInit, ViewChildren, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControlName, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router';               
 
 import { Observable, fromEvent, merge } from 'rxjs';
-import { delay } from 'rxjs/operators';
 
 import { ToastrService } from 'ngx-toastr';
 import { NgBrazilValidators } from 'ng-brazil';
@@ -157,7 +156,8 @@ export class CreateComponent implements OnInit {
           this.pesquisaCep = false;
         },
         error: (errorHandler) => {
-          this.errors.push(errorHandler );
+          this.errors.push(errorHandler);
+          this.toastr.error('Ocorreu um erro!', "Cep não localizado.");
           this.pesquisaCep = false;
         }
         });
@@ -182,12 +182,15 @@ export class CreateComponent implements OnInit {
 
       this.fornecedor.endereco.cep = StringUtils.somenteNumeros(this.fornecedor.endereco.cep);
       this.fornecedor.documento = StringUtils.somenteNumeros(this.fornecedor.documento);
+      this.fornecedor.tipoFornecedor = parseInt(this.fornecedor.tipoFornecedor.toString());
+
+      console.log(this.fornecedor);
 
       this.fornecedorService.novoFornecedor(this.fornecedor)
-        .subscribe(
-          sucesso => { this.processarSucesso(sucesso) },
-          falha => { this.processarFalha(falha) }
-        );
+        .subscribe({
+          next: (sucesso) => { this.processarSucesso(sucesso) },
+          error: (error) => { this.processarFalha(error) }
+        });
 
       this.mudancasNaoSalvas = false;
     }
@@ -200,7 +203,7 @@ export class CreateComponent implements OnInit {
     let toast = this.toastr.success('Fornecedor cadastrado com sucesso!', 'Sucesso!');
     if (toast) {
       toast.onHidden.subscribe(() => {
-        this.router.navigate(['/fornecedores/listar-todos']);
+        this.router.navigate(['/fornecedores/index']);
       });
     }
   }
@@ -209,4 +212,5 @@ export class CreateComponent implements OnInit {
     this.errors = fail.error.errors;
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
   }
+
 }

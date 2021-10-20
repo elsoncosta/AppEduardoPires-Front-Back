@@ -86,7 +86,7 @@
                                         <p [innerHTML]="displayMessage.cep"></p>
                                     </span>
                                     <button class="btn btn-primary btn-sm mb-2 {{pesquisaCep === true ? 'visible' : 'invisible'}}" type="button" disabled >
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                         Pesquisando cep...
                                     </button>
                                 </div>
@@ -174,11 +174,10 @@
                                 </span>
                                 </div>
                             </div>
-                        </div>
-                    
+                        </div>                    
                     
                         <div class="form-group">
-                            <input type="submit" value="Cadastrar" class="btn btn-primary">&nbsp;
+                            <input [disabled]="!form.valid" type="submit" value="Cadastrar" class="btn btn-primary">
                             <a class="btn btn-info" [routerLink]="['/fornecedores/index']">Voltar</a>
                         </div>
                     
